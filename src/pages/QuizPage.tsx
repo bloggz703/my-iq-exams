@@ -4,6 +4,7 @@ import QuizCard from '../components/QuizCard';
 import NavigationButtons from '../components/NavigationButtons';
 import ProgressBar from '../components/ProgressBar';
 import { motion, AnimatePresence } from 'framer-motion';
+import AdsterraAd from '../AdsterraAd'; 
 
 const QuizPage: React.FC = () => {
   const { state } = useQuiz();
@@ -34,7 +35,9 @@ const QuizPage: React.FC = () => {
             <QuizCard questionIndex={currentQuestionIndex} />
           </motion.div>
         </AnimatePresence>
-        
+
+        <AdsterraAd step={currentQuestionIndex} />
+
         <NavigationButtons showPrevious showFinish />
       </div>
     </motion.div>
