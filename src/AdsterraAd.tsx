@@ -6,20 +6,22 @@ interface AdProps {
 }
 
 export default function AdsterraAd({ step }: AdProps) {
+  const containerId = `ad-container-${step}`;
+
   useEffect(() => {
-    
+    const oldScript = document.getElementById(`adsterra-script-${step}`);
+    if (oldScript) oldScript.remove();
+
     const script = document.createElement("script");
-    script.id = "adsterra-script";
+    script.id = `adsterra-script-${step}`;
     script.async = true;
     script.setAttribute("data-cfasync", "false");
     script.src =
       "//pl26687007.profitableratecpm.com/f1c21c47e6a3d0697469f51f34e31c53/invoke.js";
 
-    const container = document.getElementById(
-      "container-f1c21c47e6a3d0697469f51f34e31c53"
-    );
+    const container = document.getElementById(containerId);
     if (container) {
-      container.innerHTML = ""; 
+      container.innerHTML = "";
       container.appendChild(script);
     }
   }, [step]);
@@ -33,8 +35,7 @@ export default function AdsterraAd({ step }: AdProps) {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
       >
-        {/* keep this div persistent across steps */}
-        <div id="container-f1c21c47e6a3d0697469f51f34e31c53"></div>
+        <div id={containerId}></div>
       </motion.div>
     </AnimatePresence>
   );
